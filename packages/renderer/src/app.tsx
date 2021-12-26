@@ -1,13 +1,30 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import * as React from 'react'
 import './app.css'
-import { Box } from '@chakra-ui/react'
+import theme from './libs/theme'
+import Fonts from './libs/fonts'
+import HomePage from './pages/home'
+import Operation from './pages/operation'
+import Authentication from './pages/authentication'
+import Success from './pages/success'
+import {
+  HashRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 const App: React.FC = () => {
   return (
-    <ChakraProvider>
-      <Box as='button' height='250px' width='250px' bg='teal' m='8px' rounded='lg' boxShadow='sx'>Prêt</Box>
-      <Box as='button' height='250px' width='250px' bg='teal'>Retour</Box>
+    <ChakraProvider theme={theme}>
+      <Fonts />
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/auth' element={<Authentication />} />
+          <Route path='/operation' element={<Operation />} />
+          <Route path='/success' element={<Success />} />
+        </Routes>
+      </HashRouter>
     </ChakraProvider>
   )
 }
